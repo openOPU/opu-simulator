@@ -3,6 +3,7 @@ from .insn import Insn, uint_field, all_defined
 
 
 class ConvInsn(Insn):
+    """conv instruction (and derivatives)"""
 
     @classmethod
     def decode(cls, i):
@@ -22,6 +23,8 @@ class ConvInsn(Insn):
 
     @classmethod
     def conv(cls, opu, h, w, n):
+        """Compute a pointwise convolution"""
+
         ifm = opu.ifm.to_real()
         ker = opu.ker.to_real()
 
@@ -41,6 +44,7 @@ class ConvInsn(Insn):
 
 
 class ConvBiasInsn(ConvInsn):
+    """conv.bias instruction"""
 
     @classmethod
     def is_valid(cls, opu, h, w, n):
@@ -55,6 +59,7 @@ class ConvBiasInsn(ConvInsn):
 
 
 class ConvAccInsn(ConvInsn):
+    """conv.acc instruction"""
 
     @classmethod
     def is_valid(cls, opu, h, w, n):

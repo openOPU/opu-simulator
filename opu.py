@@ -8,8 +8,11 @@ KER_SIZE = 1024 * 36
 OFM_SIZE = 64 * 2048
 
 class OPU:
+    """This class represents an OPU processor."""
 
     def __init__(self, itype, btype, ktype, otype):
+        """Initialize the processor with specified data types."""
+
         self.itype = itype
         self.btype = btype
         self.ktype = ktype
@@ -23,9 +26,15 @@ class OPU:
         self.ended = False
 
     def attach_vmem(self, vmem):
+        """Attach a virtual memory object to this instance.
+
+        This method should be called before simulating any program.
+        """
         self.vmem = vmem
 
     def run(self, prog):
+        """Run a program given as a list of int values."""
+
         self.ended = False
         for i in prog:
             opcode = i & 0b111111
@@ -40,7 +49,11 @@ class OPU:
                     sys.exit(-1)
 
 class RegisterFile:
+    """This class stores the value of the registers of the OPU ISA."""
+
     def __init__(self):
+        """Initialize the registers with None values."""
+
         self.ifm_h = None
         self.ifm_w = None
         self.ifm_c = None

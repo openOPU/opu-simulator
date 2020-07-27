@@ -5,15 +5,22 @@ PAGE_SIZE = 1024 * 1024
 PAGE_COUNT = MEM_SIZE // PAGE_SIZE
 
 class VirtualMemory:
+    """This class simulates a memory devive."""
 
     def __init__(self):
+        """Initialize the empty memory."""
+
         self.pages = [None] * PAGE_COUNT
 
     @staticmethod
     def newpage():
+        """Return a fresh unitialized page."""
+
         return np.empty(PAGE_SIZE, dtype=np.uint8)
 
     def __getitem__(self, i):
+        """Return the values stored in memory."""
+
         if isinstance(i, slice):
             first_page = i.start // PAGE_SIZE
             offset_of_first = i.start % PAGE_SIZE
@@ -40,6 +47,8 @@ class VirtualMemory:
         raise ValueError('Invalid argument')
 
     def __setitem__(self, i, value):
+        """Write values into memory."""
+
         if isinstance(i, slice):
             step = i.step
             if step is None:
@@ -68,3 +77,6 @@ class VirtualMemory:
             if self.pages[page_idx] is None:
                 self.pages[page_idx] = self.newpage()
             self.pages[page_idx][offset_in_page] = value
+
+        else:
+            raise ValueError('Invalid argument')

@@ -1,11 +1,13 @@
 import numpy as np
 from .insn import Insn, uint_field, all_defined
 
+# Constants as defined in the ISA manual
 ORDER_ACT_RES_POOL = 0
 ORDER_RES_ACT_POOL = 1
 ORDER_ACT_POOL_RES = 2
 
 class StoreInsn(Insn):
+    """store instruction"""
 
     @classmethod
     def decode(cls, i):
@@ -24,6 +26,8 @@ class StoreInsn(Insn):
 
     @classmethod
     def activation(cls, opu, x):
+        """Compute activations."""
+
         if opu.reg.act == 0:
             return x
         if opu.reg.act == 1:
@@ -34,12 +38,16 @@ class StoreInsn(Insn):
 
     @classmethod
     def add_ifm(cls, opu, x):
+        """Add the content of the ifm buffer (residuals)."""
+
         if opu.reg.add_ifm == 0:
             return x
         return opu.itype.from_real(x.to_real() + opu.ifm.to_real())
 
     @classmethod
     def pool(cls, opu, x):
+        """Apply the max pooling filter."""
+
         x = x.to_real()
         h = (opu.reg.ofm_h - opu.reg.pool_h) // opu.reg.pool_h_stride + 1
         w = (opu.reg.ofm_w - opu.reg.pool_w) // opu.reg.pool_w_stride + 1
@@ -87,6 +95,7 @@ class StoreInsn(Insn):
 
 
 class PadInsn(Insn):
+    """pad instruction"""
 
     @classmethod
     def decode(cls, i):

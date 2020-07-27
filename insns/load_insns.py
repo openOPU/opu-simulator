@@ -2,6 +2,7 @@ from .insn import Insn, uint_field, all_defined
 
 
 class LdIfmInsn(Insn):
+    """ld.ifm instruction"""
 
     @classmethod
     def decode(cls, i):
@@ -26,6 +27,7 @@ class LdIfmInsn(Insn):
 
 
 class LdKerInsn(Insn):
+    """ld.ker instruction"""
 
     @classmethod
     def decode(cls, i):
@@ -49,6 +51,7 @@ class LdKerInsn(Insn):
 
 
 class LdBiasInsn(Insn):
+    """ld.bias instruction"""
 
     @classmethod
     def decode(cls, i):

@@ -5,8 +5,12 @@ from vmem import VirtualMemory
 from datatype import Int8, Int16
 
 class Simulator:
+    """This class represents a simulator capable
+    of evaluating 'read', 'write', and 'run' commands."""
 
     def __init__(self, interactive=False):
+        """Initialize the simulator by creating a processor and its memory."""
+
         self.processor = OPU(
             itype=Int8,
             ktype=Int8,
@@ -18,6 +22,8 @@ class Simulator:
         self.interactive = interactive
 
     def exec_line(self, line):
+        """Execute one command line ('read', 'write', or 'run')."""
+
         parts = line.split()
 
         if parts[0] == 'write':
@@ -40,11 +46,15 @@ class Simulator:
 
     @staticmethod
     def welcome():
+        """Print a nice welcome message."""
+
         print('---------------------')
         print('| OPU ISA simulator |')
         print('---------------------')
 
     def run(self):
+        """Run the read/eval loop until EOF."""
+
         if self.interactive:
             self.welcome()
 

@@ -1,6 +1,7 @@
 from .insn import Insn, int_field, uint_field
 
 class ShapeIfmInsn(Insn):
+    """@shape.ifm instruction"""
 
     @classmethod
     def decode(cls, i):
@@ -23,6 +24,7 @@ class ShapeIfmInsn(Insn):
         opu.reg.ifm_c = c
 
 class ShapeOfmInsn(Insn):
+    """@shape.ofm instruction"""
 
     @classmethod
     def decode(cls, i):
@@ -46,6 +48,7 @@ class ShapeOfmInsn(Insn):
 
 
 class ShapeKerInsn(Insn):
+    """@shape.ker instruction"""
 
     @classmethod
     def decode(cls, i):
@@ -64,6 +67,7 @@ class ShapeKerInsn(Insn):
 
 
 class MemIfmInsn(Insn):
+    """@mem.ifm instruction"""
 
     @classmethod
     def decode(cls, i):
@@ -83,6 +87,7 @@ class MemIfmInsn(Insn):
 
 
 class MemKerInsn(Insn):
+    """@mem.ker instruction"""
 
     @classmethod
     def decode(cls, i):
@@ -100,6 +105,7 @@ class MemKerInsn(Insn):
 
 
 class MemBiasInsn(Insn):
+    """@mem.bias instruction"""
 
     @classmethod
     def decode(cls, i):
@@ -117,6 +123,7 @@ class MemBiasInsn(Insn):
 
 
 class MemOfmInsn(Insn):
+    """@mem.ofm instruction"""
 
     @classmethod
     def decode(cls, i):
@@ -138,6 +145,7 @@ class MemOfmInsn(Insn):
 
 
 class StrideInsn(Insn):
+    """@stride instruction"""
 
     @classmethod
     def decode(cls, i):
@@ -157,6 +165,7 @@ class StrideInsn(Insn):
 
 
 class ShiftInsn(Insn):
+    """@shift instruction"""
 
     @classmethod
     def decode(cls, i):
@@ -177,6 +186,7 @@ class ShiftInsn(Insn):
 
 
 class PostInsn(Insn):
+    """@post instruction"""
 
     @classmethod
     def decode(cls, i):
@@ -198,6 +208,7 @@ class PostInsn(Insn):
 
 
 class PoolInsn(Insn):
+    """@pool instruction"""
 
     @classmethod
     def decode(cls, i):
